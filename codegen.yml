@@ -1,0 +1,41 @@
+schema: "packages/schemas/**/*.graphql"
+documents: "packages/app/src/api/operations/**/*.graphql"
+emitLegacyCommonJSImports: false
+overwrite: true
+config:
+  avoidOptionals: true
+  skipTypename: true
+  useTypeImports: true
+hooks:
+  afterAllFileWrite:
+    - "prettier --write"
+    - "eslint --fix"
+generates:
+  # mockserver
+  packages/mockserver/src/resolvers/resolversTypes.ts:
+    plugins:
+      - "add"
+      - "typescript"
+      - "typescript-resolvers"
+    config:
+      content:
+        - "/* eslint-disable */"
+  # app
+  packages/app/src/types/graphql.generated.ts:
+    plugins:
+      - "add"
+      - "typescript"
+    config:
+      content:
+        - "/* eslint-disable */"
+  packages/app/src/api/urql.generated.ts:
+    plugins:
+      - "add"
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-urql"
+    config:
+      isReactHook: true
+      exposeQueryKeys: true
+      content:
+        - "/* eslint-disable */"

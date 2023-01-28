@@ -1,0 +1,22 @@
+# TODO それっぽいところに移す
+scalar Upload
+
+type Book {
+    id: ID!
+    title: String!
+    author: String!
+}
+input BookInput {
+    title: String!
+    author: String!
+}
+
+type Query {
+    book(id: ID!): Book
+    books: [Book!]!
+}
+
+type Mutation {
+    createBook(input: BookInput!): Book
+    updateBook(id: ID!, input: BookInput!): Book
+}
