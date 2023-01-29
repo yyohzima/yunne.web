@@ -5,12 +5,19 @@ import {
   ssrExchange,
 } from '@urql/core'
 import { withUrqlClient } from 'next-urql'
-import React from 'react'
+import * as React from 'react'
+
+import Layout from '@/components/Layout/Layout'
 
 import type { AppProps } from 'next/app'
+import '@/styles/global.css'
 
 const App = ({ Component, pageProps }: AppProps) => {
-  return <Component {...pageProps} />
+  return (
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
+  )
 }
 
 const isServerSide = typeof window === 'undefined'

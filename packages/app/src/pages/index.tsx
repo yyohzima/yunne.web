@@ -10,11 +10,7 @@ const Home = () => {
   console.log(error)
   console.groupEnd()
 
-  return (
-    <main className='hoge'>
-      <div>ああああ</div>
-    </main>
-  )
+  return <div>ああああ</div>
 }
 
 export default Home

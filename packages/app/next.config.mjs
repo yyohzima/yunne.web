@@ -2,6 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   output: 'standalone',
+  compiler: {
+    emotion: true,
+  },
 }
 
 export default nextConfig
