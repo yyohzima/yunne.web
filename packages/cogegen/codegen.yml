@@ -1,18 +1,19 @@
-schema: "packages/schemas/**/*.graphql"
-documents: "packages/app/src/api/operations/**/*.graphql"
+schema: "../schemas/**/*.graphql"
+documents: "../app/src/api/operations/**/*.graphql"
 emitLegacyCommonJSImports: false
 overwrite: true
 config:
   avoidOptionals: true
   skipTypename: true
   useTypeImports: true
-hooks:
-  afterAllFileWrite:
-    - "prettier --write"
-    - "eslint --fix"
+# TODO lint, prettier を共通化できたときにやる
+# hooks:
+#   afterAllFileWrite:
+#     - "prettier --write"
+#     - "eslint --fix"
 generates:
   # mockserver
-  packages/mockserver/src/resolvers/resolversTypes.ts:
+  ../mockserver/src/resolvers/resolversTypes.ts:
     plugins:
       - "add"
       - "typescript"
@@ -21,14 +22,14 @@ generates:
       content:
         - "/* eslint-disable */"
   # app
-  packages/app/src/types/graphql.generated.ts:
+  ../app/src/types/graphql.generated.ts:
     plugins:
       - "add"
       - "typescript"
     config:
       content:
         - "/* eslint-disable */"
-  packages/app/src/api/urql.generated.ts:
+  ../app/src/api/urql.generated.ts:
     plugins:
       - "add"
       - "typescript"

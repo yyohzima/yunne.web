@@ -1,5 +1,4 @@
-# TODO それっぽいところに移す
-scalar Upload
+# lint-disable-line relay-page-info-spec
 
 type Book {
     id: ID!

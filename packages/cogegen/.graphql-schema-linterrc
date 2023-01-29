@@ -1,0 +1,16 @@
+{
+  "rules": [
+    "enum-values-sorted-alphabetically"
+  ],
+  "schemaPaths": [
+    "../schemas/**/*.graphql"
+  ],
+  "rulesOptions": {
+    "enum-values-sorted-alphabetically": {
+      "sortOrder": "lexicographical"
+    },
+    "type-fields-sorted-alphabetically": {
+      "sortOrder": "lexicographical"
+    }
+  }
+}

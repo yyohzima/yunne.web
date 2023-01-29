@@ -5,35 +5,43 @@ module.exports = {
     node: true,
     es2021: true,
   },
-  plugins: ['unused-imports'],
+  plugins: ['import', 'unused-imports'],
   extends: [
-    'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:@typescript-eslint/eslint-recommended',
-    'plugin:@typescript-eslint/recommended',
     'plugin:import/recommended',
     'plugin:import/typescript',
+    'plugin:react/recommended',
     'prettier',
   ],
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-  },
   settings: {
-    'import/parsers': {
-      '@typescript-eslint/parser': ['.ts', '.tsx'],
-    },
-    'import/extensions': ['.js', '.jsx', '.tsx', '.ts'],
     'import/resolver': {
       typescript: {
         project: '.',
+        alwaysTryTypes: true,
       },
       node: {
-        extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
+        project: ['tsconfig.json'],
       },
     },
+    react: {
+      version: 'detect',
+    },
   },
+  overrides: [
+    {
+      files: ['*.ts', '*.tsx'],
+      parser: '@typescript-eslint/parser',
+      plugins: ['@typescript-eslint'],
+      extends: ['plugin:@typescript-eslint/recommended'],
+      parserOptions: {
+        sourceType: 'module',
+        ecmaVersion: 'latest',
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+      rules: {},
+    },
+  ],
   rules: {
     'no-multiple-empty-lines': ['error', { max: 1 }],
     'eol-last': ['error', 'always'],
@@ -58,7 +66,6 @@ module.exports = {
     '@typescript-eslint/no-non-null-assertion': 'error',
 
     // import
-    'import/no-unresolved': 'error',
     'import/order': [
       'error',
       {
@@ -72,6 +79,13 @@ module.exports = {
           'index',
           'object',
           'type',
+        ],
+        pathGroups: [
+          {
+            pattern: '@/**',
+            group: 'parent',
+            position: 'before',
+          },
         ],
       },
     ],

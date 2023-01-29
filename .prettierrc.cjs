@@ -5,7 +5,6 @@ module.exports = {
   semi: false,
   trailingComma: "all",
   arrowParens: "always",
-  // spaceBeforeFunctionParen: false,
   bracketSameLine: false,
   bracketSpacing: true,
   htmlWhitespaceSensitivity: "strict",
