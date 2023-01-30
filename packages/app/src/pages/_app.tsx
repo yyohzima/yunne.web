@@ -12,10 +12,10 @@ import Layout from '@/components/Layout/Layout'
 import type { AppProps } from 'next/app'
 import '@/styles/global.css'
 
-const App = ({ Component, pageProps }: AppProps) => {
+function App({ Component, pageProps }: AppProps) {
   return (
     <Layout>
-      <Component {...pageProps} />
+      <Component { ...pageProps } />
     </Layout>
   )
 }
@@ -27,20 +27,18 @@ const ssr = ssrExchange({
   initialState: !isServerSide ? window.__URQL_DATA__ : undefined,
 })
 
-export default withUrqlClient(() => {
-  return {
-    // TODO get from env
-    url: 'http://localhost:4000/graphql',
-    fetchOptions: {
-      headers: {
-        'Content-Type': 'application/json',
-      },
+export default withUrqlClient(() => ({
+  // TODO get from env
+  url: 'http://localhost:4000/graphql',
+  fetchOptions: {
+    headers: {
+      'Content-Type': 'application/json',
     },
-    exchanges: [
-      dedupExchange,
-      cacheExchange,
-      ssr, // Add `ssr` in front of the `fetchExchange`
-      fetchExchange,
-    ],
-  }
-})(App)
+  },
+  exchanges: [
+    dedupExchange,
+    cacheExchange,
+    ssr, // Add `ssr` in front of the `fetchExchange`
+    fetchExchange,
+  ],
+}))(App)

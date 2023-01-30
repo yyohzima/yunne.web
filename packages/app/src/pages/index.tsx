@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import { useGetBooksQuery } from '@/api/urql.generated'
 
-const Home = () => {
+function Home() {
   const [{ data, error, fetching }] = useGetBooksQuery()
   console.group('--- urql.result ---')
   console.log(fetching)

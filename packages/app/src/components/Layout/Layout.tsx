@@ -4,11 +4,9 @@ type LayoutProps = {
   children: ReactNode
 }
 
-const Layout = ({ children }: LayoutProps) => {
+function Layout({ children }: LayoutProps) {
   return (
-    <>
-      <main>{children}</main>
-    </>
+    <main>{children}</main>
   )
 }
 

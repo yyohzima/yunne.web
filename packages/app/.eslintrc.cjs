@@ -2,16 +2,27 @@ module.exports = {
   root: true,
   env: {
     browser: true,
-    node: true,
     es2021: true,
   },
-  plugins: ['import', 'unused-imports'],
+  plugins: ['react', '@typescript-eslint', 'import', 'unused-imports'],
   extends: [
-    'plugin:import/recommended',
-    'plugin:import/typescript',
-    'plugin:react/recommended',
+    'airbnb',
+    'airbnb-typescript',
+    'airbnb/hooks',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'prettier',
   ],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+    },
+    tsconfigRootDir: __dirname,
+    project: ['./tsconfig.json'],
+  },
   settings: {
     'import/resolver': {
       typescript: {
@@ -19,6 +30,7 @@ module.exports = {
         alwaysTryTypes: true,
       },
       node: {
+        extensions: [".ts", ".tsx"],
         project: ['tsconfig.json'],
       },
     },
@@ -26,22 +38,6 @@ module.exports = {
       version: 'detect',
     },
   },
-  overrides: [
-    {
-      files: ['*.ts', '*.tsx'],
-      parser: '@typescript-eslint/parser',
-      plugins: ['@typescript-eslint'],
-      extends: ['plugin:@typescript-eslint/recommended'],
-      parserOptions: {
-        sourceType: 'module',
-        ecmaVersion: 'latest',
-        ecmaFeatures: {
-          jsx: true,
-        },
-      },
-      rules: {},
-    },
-  ],
   rules: {
     'no-multiple-empty-lines': ['error', { max: 1 }],
     'eol-last': ['error', 'always'],
@@ -74,6 +70,7 @@ module.exports = {
           // TODO
           'builtin',
           'external',
+          'internal',
           'parent',
           'sibling',
           'index',
