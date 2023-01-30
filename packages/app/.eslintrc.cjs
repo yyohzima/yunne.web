@@ -56,7 +56,7 @@ module.exports = {
     indent: ['error', 2],
 
     // @typescript-eslint
-    '@typescript-eslint/no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': 'error',
     '@typescript-eslint/no-explicit-any': 'error',
     '@typescript-eslint/typedef': 'error',
     '@typescript-eslint/no-non-null-assertion': 'error',
