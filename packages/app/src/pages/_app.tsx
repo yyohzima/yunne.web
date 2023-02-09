@@ -25,7 +25,7 @@ const isServerSide = typeof window === 'undefined'
 
 const ssr = ssrExchange({
   isClient: !isServerSide,
-  // eslint-disable-next-line no-underscore-dangle
+  // eslint-disable-next-line no-underscore-dangle  
   initialState: !isServerSide ? window.__URQL_DATA__ : undefined,
 })
 
