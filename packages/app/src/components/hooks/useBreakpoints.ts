@@ -1,3 +1,5 @@
+import useScreenSize from '@/components/hooks/useScreenSize'
+
 export type BreakpointValues = {
   xs: number
   sm: number
@@ -8,7 +10,7 @@ export type BreakpointValues = {
 export type BreakpointKey = keyof BreakpointValues
 export type Breakpoint = BreakpointKey | number
 
-export default function breakpoints() {
+export default function useBreakpoints() {
   const values = {
     xs: 0,
     sm: 600,
@@ -46,10 +48,30 @@ export default function breakpoints() {
     return `@media (min-width:${s}${unit}) and (max-width:${e}${unit})`
   }
 
+  // TODO memo 化, useScreenSize に依存するとテスト書きにくい
+  const { screenSize } = useScreenSize()
+  function getBreakpointKey(width: number): BreakpointKey {
+    if (width < values.sm) {
+      return 'xs'
+    }
+    if (width < values.md) {
+      return 'sm'
+    }
+    if (width < values.lg) {
+      return 'md'
+    }
+    if (width < values.xl) {
+      return 'lg'
+    }
+    return 'xl'
+  }
+  const breakpointKey = getBreakpointKey(screenSize.width)
+
   return {
     less,
     up,
     down,
     between,
+    breakpointKey,
   }
 }

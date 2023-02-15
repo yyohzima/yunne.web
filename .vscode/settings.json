@@ -3,6 +3,7 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
+  "prettier.singleQuote": true,
   "eslint.workingDirectories": [{ "mode": "auto" }],
   "jest.autoRun": { "watch": false, "onSave": "test-only" }
 }

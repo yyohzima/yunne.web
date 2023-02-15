@@ -1,6 +1,6 @@
 import React from 'react'
 
-import breakpoints from '@/components/hooks/breakpoints'
+import useBreakpoints from '@/components/hooks/useBreakpoints'
 
 import useScreenSize from '../hooks/useScreenSize'
 
@@ -17,7 +17,7 @@ type LayoutProps = {
 
 function Layout({ children }: LayoutProps) {
   const { screenSize } = useScreenSize()
-  const bpoints = breakpoints()
+  const bpoints = useBreakpoints()
   if (bpoints.less('sm', screenSize.width)) {
     return <Small>{children}</Small>
   }

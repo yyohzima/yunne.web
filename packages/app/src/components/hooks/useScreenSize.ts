@@ -1,7 +1,12 @@
 import { useEffect, useState } from 'react'
 
+export type ScreenSize = {
+  width: number
+  height: number
+}
+
 export default function useScreenSize() {
-  const [screenSize, setScreenSize] = useState({
+  const [screenSize, setScreenSize] = useState<ScreenSize>({
     width: 0,
     height: 0,
   })
@@ -19,6 +24,8 @@ export default function useScreenSize() {
       window.removeEventListener('resize', handleResize)
     }
   }, [screenSize])
+
+  useEffect(() => handleResize(), [])
 
   return { screenSize }
 }
