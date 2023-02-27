@@ -5,7 +5,7 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import NextImage from 'next/image'
-import { Pagination } from 'swiper'
+import { Autoplay, Pagination } from 'swiper'
 
 import useBreakpoints, {
   BreakpointKey,
@@ -42,9 +42,8 @@ const BannersPagination = styled.div`
   display: flex;
   justify-content: center;
   padding: 10px 10px;
-  gap: 0 10px;
 
-  > span.swiper-pagination-bullet {
+  span.swiper-pagination-bullet {
     background-color: #000;
     height: 10px;
     width: 10px;
@@ -137,7 +136,7 @@ function About() {
     <Container>
       <SwiperContainer>
         <Swiper
-          modules={[Pagination]}
+          modules={[Pagination, Autoplay]}
           slidesPerView='auto'
           spaceBetween={20}
           pagination={{
